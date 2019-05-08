@@ -23,10 +23,10 @@ ENDM
 PRINT   MACRO   sdat
 LOCAL   next_char, s_dcl, printed, skip_dcl
 
-PUSH    AX      ; store registers...
+PUSH    AX      
 PUSH    SI      ;
 
-JMP     skip_dcl        ; skip declaration.
+JMP     skip_dcl      
         s_dcl DB sdat, 0
 
 skip_dcl:
@@ -37,22 +37,22 @@ next_char:
         CMP     AL, 0
         JZ      printed
         INC     SI
-        MOV     AH, 0Eh ; teletype function.
+        MOV     AH, 0Eh 
         INT     10h
         JMP     next_char
 printed:
 
-POP     SI      ; re-store registers...
-POP     AX      ;
+POP     SI      
+POP     AX      
 ENDM
 
 PRINTN   MACRO   sdat
 LOCAL   next_char, s_dcl, printed, skip_dcl
 
-PUSH    AX      ; store registers...
-PUSH    SI      ;
+PUSH    AX     
+PUSH    SI      
 
-JMP     skip_dcl        ; skip declaration.
+JMP     skip_dcl        
         s_dcl DB sdat, 13, 10, 0
 
 skip_dcl:
@@ -63,13 +63,13 @@ next_char:
         CMP     AL, 0
         JZ      printed
         INC     SI
-        MOV     AH, 0Eh ; teletype function.
+        MOV     AH, 0Eh 
         INT     10h
         JMP     next_char
 printed:
 
-POP     SI      ; re-store registers...
-POP     AX      ;
+POP     SI     
+POP     AX      
 ENDM  
 
 mov cx, x
@@ -78,7 +78,7 @@ PRINT 'o '
 loop line 
 mov cx, y
 
-gotoxy 1,1    
+gotoxy 0,1    
 
 colonm:
 PRINTN 't'
